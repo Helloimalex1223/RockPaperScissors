@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    const options = ["rock", "paper", "scissors"];
+    let playerScore = 0;
+    let computerScore = 0;
+
+function game(){
+        for(let i = 1; i <= 5; i++){
+            const computerChoice = options[Math.floor(Math.random() * options.length)];
+            let input = prompt("Rock, Paper or Scissors?");
+            let playerChoice = input.toLowerCase();
+            playRound(computerChoice, playerChoice);
+        }
+        
+        determineWinner(playerScore, computerScore);    
+          
+    }
+
+function playRound(computerChoice, playerChoice){
+                if (computerChoice === "rock" & playerChoice === "paper" ||
+                    computerChoice === "paper" & playerChoice === "scissors" ||
+                    computerChoice === "scissors" & playerChoice === "rock"){
+                        playerScore += 1;
+                        console.log(`You Win! ${playerChoice} beats ${computerChoice}` );
+                        console.log(`Current score: ${computerScore} Computer, ${playerScore} Player` );
+                    }
+                else if (computerChoice === "paper" & playerChoice === "rock" ||
+                         computerChoice === "scissors" & playerChoice === "paper" ||
+                         computerChoice === "rock" & playerChoice === "paper"){
+                            computerScore += 1;
+                            console.log(`You Lose! ${playerChoice} beats ${computerChoice}` );
+                            console.log(`Current score: ${computerScore} Computer, ${playerScore} Player` );
+                    }
+                else {
+                    console.log("It's a tie!");
+                    console.log(`Current score: ${computerScore} Computer, ${playerScore} Player` )
+                }
+            }
+
+function determineWinner(a, b){
+    if (a < b){
+        console.log(`Sad! You lost! You scored ${a} vs ${b}!`)
+        }
+    else if (a > b){
+        console.log(`You win!!!! You scored ${a} vs ${b}!`)
+        }
+    else{
+        console.log("How improbable! It's a tie!");
+        }  
+}
+game();
+</script>
+</body>
+</html>
