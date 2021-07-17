@@ -1,61 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>button {
+    width: 20%}</style>
 </head>
 <body>
+<div class="scoreContainer">
+    <div id="scoreTable"></div>
+    <div id="message"></div>
+</div>
+        <div class="buttonContainer">
+            <div class="buttons">
+            <button id="rock">rock</button>
+            <button id="paper">paper</button>
+            <button id="scissors">scissors</button>
+            </div>
+        </div>
+
     <script>
-    const options = ["rock", "paper", "scissors"];
+    
     let playerScore = 0;
     let computerScore = 0;
+    let computerChoice;
+    const options = ["rock", "paper", "scissors"]; 
+    const scoreDOM = document.querySelector("#scoreTable");
+    const scoreUpdate = document.createElement("p");
+    const messageDOM = document.querySelector("#message");
+    const messageUpdate = document.createElement("p");
+// when a button is selected, event listener of the buttons id is transmitted as the player's choice
+//computer randomly chooses an option and a round is played
+const buttons = document.querySelectorAll("button");
+    buttons.forEach((button) => {
+        button.addEventListener("click", (e) =>{
+            computerChoice = options[Math.floor(Math.random() * options.length)]; 
+            playRound(computerChoice, e.target.id);
+        });
+    });
 
-function game(){
-        for(let i = 1; i <= 5; i++){
-            const computerChoice = options[Math.floor(Math.random() * options.length)];
-            let input = prompt("Rock, Paper or Scissors?");
-            let playerChoice = input.toLowerCase();
-            playRound(computerChoice, playerChoice);
-        }
-        
-        determineWinner(playerScore, computerScore);    
-          
-    }
-
+//plays a round with the input choices - updates DOM with the winner and score            
 function playRound(computerChoice, playerChoice){
                 if (computerChoice === "rock" & playerChoice === "paper" ||
                     computerChoice === "paper" & playerChoice === "scissors" ||
                     computerChoice === "scissors" & playerChoice === "rock"){
                         playerScore += 1;
-                        console.log(`You Win! ${playerChoice} beats ${computerChoice}` );
-                        console.log(`Current score: ${computerScore} Computer, ${playerScore} Player` );
+                        messageUpdate.textContent = `You Win! ${playerChoice} beats ${computerChoice}`;
                     }
                 else if (computerChoice === "paper" & playerChoice === "rock" ||
                          computerChoice === "scissors" & playerChoice === "paper" ||
                          computerChoice === "rock" & playerChoice === "paper"){
                             computerScore += 1;
-                            console.log(`You Lose! ${playerChoice} beats ${computerChoice}` );
-                            console.log(`Current score: ${computerScore} Computer, ${playerScore} Player` );
+                            messageUpdate.textContent =`You Lose! ${playerChoice} beats ${computerChoice}`;
                     }
                 else {
-                    console.log("It's a tie!");
-                    console.log(`Current score: ${computerScore} Computer, ${playerScore} Player` )
+                    messageUpdate.textContent = "It's a tie!";
                 }
+                scoreIt();
+                appender();
+                isWinnerTime(playerScore, computerScore);
             }
 
+//determines if the player or computer won 5 rounds
+function isWinnerTime(c, d){
+    if (c == 5 || d == 5){
+        determineWinner(c, d)
+    }
+    return;
+}
+
+//if 5 rounds are won, determines winner
 function determineWinner(a, b){
     if (a < b){
-        console.log(`Sad! You lost! You scored ${a} vs ${b}!`)
+        messageUpdate.textContent = `Sad! You lost! You scored ${a} vs the computer's ${b}!`;
+        scoreUpdate.textContent = "";
         }
     else if (a > b){
-        console.log(`You win!!!! You scored ${a} vs ${b}!`)
+        messageUpdate.textContent = `You win!!!! You scored ${a} vs the computer's ${b}!`;
+        scoreUpdate.textContent = "";
         }
     else{
-        console.log("How improbable! It's a tie!");
-        }  
+        messageUpdate.textContent ="How improbable! It's a tie!";
+        scoreUpdate.textContent = "";
+        }
+    
+    appender();
+    playerScore = 0;
+    computerScore = 0;
 }
-game();
+
+//updates the score in the DOM
+function scoreIt(){
+    scoreUpdate.textContent = `Current score: ${computerScore} Computer, ${playerScore} Player`;
+}
+//appends dom elements
+function appender(){
+    messageDOM.appendChild(messageUpdate);
+    scoreDOM.appendChild(scoreUpdate);
+}
+
 </script>
 </body>
+
 </html>
