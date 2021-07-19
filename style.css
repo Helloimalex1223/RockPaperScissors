@@ -1,0 +1,75 @@
+:root {
+    --main-bg-color: #005852;
+    --secondary-color: #610059;
+    --third-color: white; 
+}
+.wrapper {
+    height: 100%;
+    width: 500px;
+    background-color: var(--main-bg-color);
+    padding: 5px;
+}
+.messageBox {
+    background-color: var(--third-color);
+    height: 150px;
+    border-top: solid var(--secondary-color);
+    border-bottom: solid var(--secondary-color);
+}
+#message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 30px;
+}
+#score {
+    font-size: 30px;
+}
+
+#scoreTable {
+    background-color: var(--main-bg-color);
+    color: var(--third-color);
+    display: flex;
+    justify-content: space-around;
+}
+.scoreContainer {
+    display: flex;
+    align-items: center;
+    width: 55%;
+    justify-content: center;
+}
+.buttonContainer {
+    display: flex;
+    justify-content: space-around;
+    background-color: var(--secondary-color);
+    padding: 10px;
+}
+button {
+    width: 140px;
+    height: 95px;
+}
+h1 {
+   color: var(--third-color);
+} 
+.title{
+    display: flex;
+    justify-content: center;
+    height: 25%;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+}
+#rock{
+    background-image:url("https://m.media-amazon.com/images/I/61m9jG+jj-L._AC_SY355_.jpg");
+    background-size: cover;
+}
+#paper{
+    background-image:url("https://cdn11.bigcommerce.com/s-c7561/images/stencil/1280x1280/products/1410/2644/paper_sheet__77031.1466036846.jpg?c=2");
+    background-size: cover;
+}
+#scissors{
+    background-image:url("https://pics.knifecenter.com/eyJidWNrZXQiOiAiZmlsZXMua25pZmVjZW50ZXIuY29tIiwia2V5IjogImtuaWZlY2VudGVyL2NvbmsvaW1hZ2VzL2NjMTA1LmpwZyIsImVkaXRzIjogeyJyZXNpemUiOiB7IndpZHRoIjogNzYwLCJoZWlnaHQiOiA0MjUsImZpdCI6ICJjb250YWluIiwiYmFja2dyb3VuZCI6IHsiciI6IDI1NSwiZyI6IDI1NSwiYiI6IDI1NSwiYWxwaGEiOiAxfX19fQ==");
+    background-size: cover;
+}
